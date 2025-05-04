@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array and Hashing Practice</title>
+</head>
+<body>
+    <script>
+
+        //ARRAYS AND HASHING
+
+        // 1-  Given an integer array nums of length n, you want to create an array ans of length 2n where ans[i] == nums[i] and 
+        // ans[i + n] == nums[i] for 0 <= i < n (0-indexed).
+        //   Specifically, ans is the concatenation of two nums arrays.
+        //   Return the array ans.
+
+        // Example 1:
+        // Input: nums = [1,2,1]
+        // Output: [1,2,1,1,2,1]
+        // Explanation: The array ans is formed as follows:
+        // - ans = [nums[0],nums[1],nums[2],nums[0],nums[1],nums[2]]
+        // -  ans = [1,2,1,1,2,1]
+
+        //Solution
+        // function concatenation(nums) {
+        //     const newArr = []
+        //     let repeat = 2
+            
+        //     while(repeat >= 1) {
+
+        //         for(let i = 0; i < nums.length; i++) {
+        //             newArr.push(nums[i % nums.length])
+        //         }
+                
+
+        //         repeat--
+        //     }
+
+        //     console.log(newArr);
+            
+        // }
+
+        // concatenation([1,2,1])
+        // concatenation([1,2,3,4,5])
+
+
+        // 2-Contains Duplicate
+        // Given an integer array nums, return true if any value appears more than once in the array, otherwise return false.
+
+        // Example 1:
+        // Input: nums = [1, 2, 3, 3]
+        // Output: true
+
+        //SOLUTION
+        // function hasDuplicates(nums) {
+        //     for(let i = 0; i < nums.length; i++) {
+        //         for(let j = i+1; j < nums.length; j++) {
+        //             if(nums[i] === nums[j]) {
+        //                 console.log(true);
+        //                 return 
+        //             }
+        //         }
+        //     }
+        //     console.log(false);
+            
+        // }
+
+        // function hasDuplicates(nums) {
+        //     let set = new Set(nums)
+        //     console.log(set.size !== nums.length ? true : false);
+                        
+        // }
+
+        // hasDuplicates([1, 2, 3, 3])
+        // hasDuplicates([1, 2, 3])
+
+
+        // //   3-Valid Anagram
+        // //     Given two strings s and t, return true if the two strings are anagrams of each other, otherwise return false.
+
+        // // An anagram is a string that contains the exact same characters as another string, but the order of the characters can be different.
+        // //     Example 1:
+        // //     Input: s = "racecar", t = "carrace"
+        // //     Output: true
+
+        // //SOLUTION
+        // function isAnagram(str1, str2) {
+
+        //     if(str1.length !== str2.length) return false
+
+        //     let map1 = new Map()
+        //     let map2 = new Map()
+
+        //     for(let str of str1) {
+        //         if(map1.has(str)) {
+        //             map1.set(str, (map1.get(str) + 1))
+        //         }else{
+        //             map1.set(str, 1)
+        //         }
+        //     }
+        //     for(let str of str2) {
+        //         if(map2.has(str)) {
+        //             map2.set(str, (map2.get(str) + 1))
+        //         }else{
+        //             map2.set(str, 1)
+        //         }
+        //     }
+
+        //    for(let [key, value] of map1) {
+        //         if(map2.get(key) !== value) {
+        //             console.log(false);
+        //             return 
+        //         }
+        //     }
+            
+        //     console.log(true);
+            
+        // }
+
+        // isAnagram("racecar", "carrace")
+        // isAnagram("racecar", "carracew")
+
+
+        // 4-Two Sum
+        // Given an array of integers nums and an integer target, return the indices i and j such that nums[i] + nums[j] == target and i != j.
+        // You may assume that every input has exactly one pair of indices i and j that satisfy the condition.
+        // Return the answer with the smaller index first.
+
+        // Example 1:
+        // Input: 
+        // nums = [3,4,5,6], target = 7
+        // Output: [0,1]
+        // Explanation: nums[0] + nums[1] == 7, so we return [0, 1].
+
+        //Solution
+        // function twoSums(nums, target) {
+        //     let arr = []
+        //     let map = new Map()
+
+        //     for(let i = 0; i < nums.length; i++) {
+        //         let diff = target - nums[i]
+        //         // console.log(diff);
+                
+        //        if(map.has(diff)) {
+        //         arr.push(map.get(diff), i)
+        //        }else{
+        //         map.set(nums[i], i)
+        //        }
+                
+        //     }
+        //     console.log(map);
+            
+        //     console.log(arr);
+            
+        // }
+
+
+        // twoSums([3,4,5,6], 7)
+
+
+        //5- Group Anagrams
+        // Given an array of strings strs, group all anagrams together into sublists. You may return the output in any order.
+        // An anagram is a string that contains the exact same characters as another string, but the order of the characters can be different.
+
+        // Example 1:
+        // Input: strs = ["act","pots","tops","cat","stop","hat"]
+        // Output: [["hat"],["act", "cat"],["stop", "pots", "tops"]]
+
+        //Solution
+        // function groupAnagrams(strs) {
+        //     let map = new Map()
+
+        //     for(let word of strs) {
+        //         let sorted = word.split('').sort().join('')
+
+        //         if(map.has(sorted)) {
+        //             map.get(sorted).push(word)
+        //         }else{
+        //             map.set(sorted, [word])
+        //         }
+
+        //     }
+        //     console.log(Array.from(map.values()));
+            
+        // }
+
+        // function groupAnagrams(strs) {
+        //     let map = new Map()
+
+        //     for(let str of strs) {
+        //         let count = new Array(26).fill(0)
+        //         // console.log(count);
+                
+        //         for(let letter of str) {
+        //             count[letter.charCodeAt(0) - 97] += 1
+        //         }
+        //         // console.log(count);
+            
+        //         let key = count.join(',')
+        //         // console.log(key);
+
+        //         if(!map.has(key)) {
+        //             map.set(key, [])
+        //         }
+                
+        //         map.get(key).push(str)
+        //     }
+            
+        //     console.log(Array.from(map.values()));
+            
+        // }
+
+
+        // groupAnagrams(["act","pots","tops","cat","stop","hat"])
+
+
+        // 6- Top K Frequent Elements
+        // Given an integer array nums and an integer k, return the k most frequent elements within the array.
+        // The test cases are generated such that the answer is always unique.
+        // You may return the output in any order.
+        // Example 1:
+        // Input: nums = [1,2,2,3,3,3], k = 2
+        // Output: [2,3]
+
+        // Example 2:
+        // Input: nums = [7,7], k = 1
+        // Output: [7]
+
+
+        //   function topkFrequent(nums, k) {
+        //     let count = {}
+        //     //aik array zyada banai hai yahan length of nums sy, kyu k neechay jab push krn ga element tou agar length 2 hai tou index k
+        //     //lehaz sy array 0 sy count ho rhi ho gi aur incase of 2 elements undefined sy ga
+        //     freq = Array.from({length: nums.length + 1}, () => [])
+        //     // console.log(freq);
+
+        //     for(let num of nums) {
+        //         count[num] = (count[num] || 0) + 1
+        //     }
+        //     // console.log(count);
+            
+        //     for(let ele in count) {
+        //         // console.log(ele); //gives key
+        //         // console.log(count[ele]); //gives value
+        //         // e.g incase of [7,7] => {7 : 2} => count object mein 7 key aur value 2, value access count[key] sy ho gi
+        //         //freq array at index of count[ele] (value) mein push kr diya ele (key)
+        //         // console.log(freq[count[ele]]);
+        //         freq[count[ele]].push(+ele)
+        //     }
+        //     // console.log(freq);
+            
+        //     let res = []
+
+        //     //i > 0 hai not i >= 0, 0 index tk nai jana mein ne yahan
+        //     for(let i = freq.length - 1; i > 0; i--) {
+        //         // console.log(freq[i], i);
+        //         for(let num of freq[i]){
+        //             res.push(num)
+        //         }
+        //         if(res.length === k) {
+        //             console.log(res);
+        //             return
+        //         }
+        //     }
+        //     //uppar mein ne if condition mein check kiya k res ki length k k equal hai tou res log krwa k return, function wahan he ruk gya
+        //     //agar men return na karon tou res mein sb element aa jye gy jo bhi uss slot mein hain
+        //     // console.log(res);
+            
+        //   }
+
+        //   topkFrequent([1,2,2,3,3,3], 2)
+        //   topkFrequent([7,7], 1)
+
+
+        // 7-Encode and Decode Strings
+        //   Design an algorithm to encode a list of strings to a single string. The encoded string is then decoded back to the original list of strings.
+        //   Please implement encode and decode
+
+        //   Example 1:
+        //   Input: ["neet","code","love","you"]
+        //   Output:["neet","code","love","you"]
+
+
+        // class Solution{
+
+        //     encode(arr) {
+        //         let str = ''
+        //         for(let i = 0; i < arr.length; i++) {
+        //             str += arr[i].length + '#' + arr[i]
+        //         }
+        //         return str
+        //     }
+
+        //     decode(str) {
+        //         let res = []
+        //         let i = 0
+
+        //         while(i < str.length) {
+        //             let j = i
+
+        //             while(str[j] !== '#') {
+        //                 j++
+        //             }
+        //             console.log(j);
+                    
+        //             let length = +str.slice(i, j)
+        //             console.log(length);
+
+        //             i = j + 1
+        //             console.log(i);
+                    
+        //             j = i + length
+        //             console.log(j);
+                    
+                    
+        //             res.push(str.slice(i, j))
+
+        //             i = j
+        //         }
+
+        //         console.log(res);
+                
+        //     }
+        // }
+
+        // let sol = new Solution()
+        // console.log(sol.encode(["neet","code","love","you"]));
+        // // console.log(sol.decode("4#neet4#code4#love3#you"));
+        // console.log(sol.decode("4#neet4#code"));
+        
+
+    </script>
+</body>
+</html>
