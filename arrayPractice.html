@@ -330,6 +330,204 @@
         // console.log(sol.decode("4#neet4#code"));
         
 
+
+        // 8-Products of Array Except Self
+        // Given an integer array nums, return an array output where output[i] is the product of all the elements of nums except nums[i].
+
+        // Each product is guaranteed to fit in a 32-bit integer.
+
+        // Example 1:
+        // Input: nums = [1,2,4,6]
+        // Output: [48,24,12,8]
+
+        // solution has o(n2) time complexity and o(n) space complexity
+        // function productExceptSelf(nums) {
+        //     let prods = new Array()
+
+        //     let i = 0
+        //     while(i < nums.length) {
+        //         let product = 1
+        //         for(let j = 0; j < nums.length; j++) {
+        //             if(i !== j) {
+        //                 product *= nums[j]
+        //             }
+        //         }
+        //         prods[i] = product
+
+        //         i++
+        //     }
+
+        //     console.log(prods);
+            
+        // }
+
+
+        // solution has o(n) time and space complexity 
+        // function productExceptSelf(nums) {
+        //     const n = nums.length
+        //     //array constructor ko value dy k pehle he bta diya hai k array kitni length ki ho gi
+        //     const res = new Array(n).fill(1)
+        //     // console.log(res);
+            
+        //     //prefix calculate ho ga
+        //     for(let i = 1; i < n; i++) {
+        //         res[i] = res[i - 1] * nums[i - 1]
+        //     }
+        //     // res[1] = res[0] * nums[0] === res[1] = 1 * 1 === res = [1, 1]
+        //     // res[2] = res[1] * nums[1] === res[2] = 1 * 2 === res = [1, 1, 2]
+        //     // res[3] = res[2] * nums[2] === res[3] = 2 * 4 === res = [1, 1, 2, 8] => prefix arr
+        //     // console.log(res);
+            
+        //     let postFix = 1
+        //     for(let i = n - 1; i >= 0; i--) {
+        //         // res[i] *= postFix
+        //         // postFix *= nums[i]
+        //         res[i] = res[i] * postFix
+        //         postFix = postFix * nums[i]
+        //     }
+
+        //     // res = [1, 1, 2, 8]
+        //     // i = n - 1 => i = 3
+        //     // res[3] *= postFix = 8 *= 1 = [8]
+        //     // postFix *= nums[3] = 1 *= 6 = 6
+
+        //     // i = 2
+        //     // res[2] *= postFix = 2 *= 6 = [12, 8]
+        //     // postFix *= nums[2] = 6 *= 4 = 24
+
+        //     // i = 1
+        //     // res[1] *= postFix = 1 *= 24 = [24, 12, 8]
+        //     // postFix *= nums[1] = 24 *= 2 = 48
+
+        //     // i = 0
+        //     // res[0] *= postFix = 1 *= 48 = [48, 24, 12, 8]
+        //     //postFix *= nums[0] = 48 *= 1 = 48
+
+        //     console.log(res);
+        // }
+
+
+        // function productExceptSelf(nums) {
+        //     let n = nums.length
+        //     let prefix = new Array(n)
+        //     let postFix = new Array(n)
+        //     let res = []
+
+        //     res = []
+        //     prefix[0] = 1
+        //     postFix[n-1] = 1
+
+        //     for(let i = 1; i < n; i++) {
+        //         prefix[i] = prefix[i-1] * nums[i-1]
+        //     }
+        //     console.log(prefix);
+
+        //     for(let i = n - 2; i >= 0; i--) {
+        //         postFix[i] = postFix[i+1] * nums[i+1]
+        //     }
+
+        //     console.log(postFix);
+            
+        //     for(let i = 0; i < n; i++) {
+        //         res[i] = prefix[i] * postFix[i]
+        //     }
+            
+        //     console.log(res);
+            
+        // }
+
+
+        // productExceptSelf([1,2,4,6])  //[48,24,12,8]
+
+
+        // Encode and Decode Strings
+        // Design an algorithm to encode a list of strings to a single string. The encoded string is then decoded back to the original list of strings.
+        // Please implement encode and decode
+
+        // Example 1:
+        // Input: ["neet","code","love","you"]
+        // Output:["neet","code","love","you"]
+
+        // class Solution{
+        //     encode(arr) {
+        //         let str = ''
+        //         for(let i = 0; i < arr.length; i++) {
+        //             str += arr[i].length + "#" + arr[i]
+        //         }
+        //         return str
+        //     }
+
+        //     decode(str) {
+        //         let i = 0
+        //         let arr = []
+
+        //         while(i < str.length) {
+        //             let j = i
+
+        //             while(str[j] !== '#') {
+        //                 j++
+        //             }
+        //             let length = +str.slice(i, j)
+
+        //             i = j + 1
+        //             j = i + length
+
+        //             arr.push(str.slice(i, j))
+
+        //             i = j
+        //         }
+
+        //         return arr
+        //     }
+        // }
+
+        // let sol = new Solution()
+        // console.log(sol.encode(["neet","code","love","you"]));
+        // console.log(sol.decode("4#neet4#code4#love3#you"));
+        
+
+
+        // Top K Frequent Elements 
+        // Given an integer array nums and an integer k, return the k most frequent elements within the array.
+        // The test cases are generated such that the answer is always unique.
+        // You may return the output in any order.
+
+        // Example 1:
+        // Input: nums = [1,2,2,3,3,3], k = 2
+        // Output: [2,3]
+
+
+        function topkFrequent(nums, k) {
+            let obj = {}
+            let count = Array.from({length: nums.length + 1}, () => [])
+
+            for(let num of nums) {
+                obj[num] = (obj[num] || 0) + 1
+            }
+            // console.log(obj);
+
+            for(let ele in obj) {
+                count[obj[ele]].push(+ele)
+            }
+            console.log(count);
+
+            let res = []
+            
+            for(let i = count.length - 1; i > 0; i--) {
+                for(let num of count[i]){
+                    res.push(num)
+                    // console.log(res);
+                    if(res.length === k) {
+                        // console.log(res);
+                        
+                    }
+                }
+                }
+        }
+
+        topkFrequent([1,2,2,3,3,3,6,6], 2)
+        topkFrequent([7,7], 1)
+
     </script>
 </body>
 </html>

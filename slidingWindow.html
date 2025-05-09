@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sliding Window</title>
+</head>
+<body>
+
+    <script>
+
+        // 1-Best Time to Buy and Sell Stock
+        // You are given an integer array prices where prices[i] is the price of NeetCoin on the ith day.
+        // You may choose a single day to buy one NeetCoin and choose a different day in the future to sell it.
+        // Return the maximum profit you can achieve. You may choose to not make any transactions, in which case 
+        // the profit would be 0.
+
+        // Example 1:
+        // Input: prices = [10,1,5,6,7,1]
+        // Output: 6
+        // Explanation: Buy prices[1] and sell prices[4], profit = 7 - 1 = 6.
+
+        // Example 2:
+        // Input: prices = [10,8,7,5,2]
+        // Output: 0
+        // Explanation: No profitable transactions can be made, thus the max profit is 0.
+
+        //SOLUTION-1 BRUTE-FORCE
+        // function maxProfit(prices) {
+
+        //     let res = 0
+
+        //     for(let i = 0; i < prices.length; i++)  {
+        //         for(let j = i + 1; j < prices.length; j++) {
+        //             let diff = prices[j] - prices[i]
+
+        //             res = Math.max(res, diff)
+        //         }
+        //     }
+
+        //     console.log(res);
+            
+        // }
+
+        //SOLUTION-2 TWO-POINTER
+        // function maxProfit(prices) {
+        //     let left = 0, right = 1
+        //     let res = 0
+
+        //     while(right < prices.length) {
+
+        //         if(prices[left] < prices[right]) {
+        //             let profit = prices[right] - prices[left]
+        //             res = Math.max(res, profit) 
+        //         }else{
+        //             left = right
+        //         }
+
+
+        //         right++
+        //     }
+
+        //     console.log(res);
+            
+        // }
+
+
+        // SOLUTION-3 DYNAMIC-PROGRAMMING
+        function maxProfit(prices) {
+            let maxP = 0
+            let minBuy = prices[0]
+            console.log(minBuy);
+            
+
+            for(let sell of prices) {
+                console.log(minBuy);
+                
+                maxP = Math.max(maxP, sell - minBuy)
+                console.log(minBuy);
+                minBuy = Math.min(minBuy, sell)
+                console.log(minBuy);
+
+            }
+
+            return maxP
+            
+        }
+
+        // [10,1,5,6,7,1]
+        // maxP = Math.max(maxP, sell - minBuy)
+        // minBuy = Math.min(minBuy, sell)
+
+        //first-loop
+        // maxP = Math.max(maxP, sell - minBuy) === maxP=Math.max(0, 10-10) = 0
+        // minBuy = Math.min(10, 10) = 10
+        
+        //Second-loop
+        // maxP = Math.max(maxP, sell - minBuy) === maxP=Math.max(0, 1 - 10) = (0, -9) = 0
+        // minBuy = Math.min(10, 1) = 1
+        
+        //Third-loop
+        // maxP = Math.max(maxP, sell - minBuy) === maxP=Math.max(0, 5 - 1) = (0, 4) = 4
+        // minBuy = Math.min(1, 5) = 1
+        
+        //Fourth-loop
+        // maxP = Math.max(maxP, sell - minBuy) === maxP=Math.max(4, 6 - 1) = (0, 5) = 5
+        // minBuy = Math.min(1, 6) = 1
+        
+        //Fifth-loop
+        // maxP = Math.max(maxP, sell - minBuy) === maxP=Math.max(5, 7 - 1) = (0, 5) = 6
+        // minBuy = Math.min(1, 7) = 1
+        
+        //sixth-loop
+        // maxP = Math.max(maxP, sell - minBuy) === maxP=Math.max(6, 1 - 1) = (0, 0) = 6
+        // minBuy = Math.min(1, 1) = 1
+
+        maxProfit([10,1,5,6,7,1])
+        maxProfit([10,8,7,5,2])
+
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Two Pointers</title>
+</head>
+<body>
+    <script>
+
+        // TWO POINTERS
+        // 1- Valid Palindrome
+        // Given a string s, return true if it is a palindrome, otherwise return false.
+        // A palindrome is a string that reads the same forward and backward. It is also case-insensitive and ignores all
+        // non-alphanumeric characters.
+
+        // Example 1:
+        // Input: s = "Was it a car or a cat I saw?"
+        // Output: true
+
+        // Explanation: After considering only alphanumerical characters we have "wasitacaroracatisaw", which is a palindrome.
+
+
+        // function isPalindrome(s) {
+        //     let formattedStr = s.toLowerCase().replace(/[^a-z0-9]/g, "")
+        //     // console.log(formattedStr);
+        //     let newStr = ""
+
+        //     for(let i = formattedStr.length - 1; i >= 0; i--) {
+        //         newStr += formattedStr[i]
+        //     }
+            
+        //     console.log(newStr === formattedStr);
+            
+        // }
+
+        // Two-Pointer technique
+        // function isPalindrome(s) {
+        //     let left = 0
+        //     let right = s.length - 1
+
+        //     while(left < right) {
+
+
+        //         while(left < right && !isAlphaNum(s[left])) {
+        //             left++
+        //         }
+
+        //         while(right > left && !isAlphaNum(s[right])) {
+        //             right--
+        //         }
+
+        //         if(s[left].toLowerCase() !== s[right].toLowerCase()) {
+        //             console.log(false);
+        //             return 
+        //         }
+
+        //         left++ 
+        //         right--
+        //     }
+
+        //     console.log(true);
+        //     return 
+        // }
+
+        // function isAlphaNum(c) {
+        //     return (
+        //         (c >= "A" && c <= "Z") ||
+        //         (c >= "a" && c <= "z") ||
+        //         (c >= "0" && c <= "9")
+        //     )
+        // }
+
+        // isPalindrome("Was it a car or a cat I saw?")
+        // isPalindrome("tab a cat")
+
+
+        // Two Sum
+        // Given an array of integers nums and an integer target, return the indices i and j such that nums[i] + nums[j] == target and i != j.
+        // You may assume that every input has exactly one pair of indices i and j that satisfy the condition.
+        // Return the answer with the smaller index first.
+
+        // Example 1:
+        // Input: 
+        // nums = [3,4,5,6], target = 7
+        // Output: [0,1]
+
+
+        // function twoSum(arr, target) {
+
+        //     let numMap = new Map()
+        //     let res = []
+
+        //     for(let i = 0; i < arr.length; i++) {
+        //         let diff = target - arr[i]
+
+        //         if(!numMap.has(diff)) {
+        //             numMap.set(arr[i], i)
+        //         }else{
+        //             res.push(numMap.get(diff), i)
+        //         }
+        //     }
+
+        //     console.log(res);
+            
+        // }
+
+        // twoSum([3,4,5,6], 7)
+        // twoSum([4,5,6], 10)
+
+
+        // Two Integer Sum II
+        // Given an array of integers numbers that is sorted in non-decreasing order.
+        // Return the indices (1-indexed) of two numbers, [index1, index2], such that they add up to a given target number target and 
+        // index1 < index2. Note that index1 and index2 cannot be equal, therefore you may not use the same element twice.
+
+        // There will always be exactly one valid solution.
+
+        // Example 1:
+        // Input: numbers = [1,2,3,4], target = 3
+        // Output: [1,2]
+
+        // Explanation:
+        // The sum of 1 and 2 is 3. Since we are assuming a 1-indexed array, index1 = 1, index2 = 2. We return [1, 2].
+
+        // function twoSum(nums, target) {
+        //     let left = 0, right = nums.length - 1;
+
+        //     while (left < right) {
+        //         let currSum = nums[left] + nums[right];
+
+        //         if (currSum > target) {
+        //             right--;
+        //         } else if (currSum < target) {
+        //             left++;
+        //         } else {
+        //             // Return 1-based indices
+        //             console.log([left + 1, right + 1]);
+                    
+        //             return ;
+        //         }
+        //     }
+        // }
+
+
+        // twoSum([1,2,3,4], 3)
+
+
+
+        // 2-3Sum
+        // Given an integer array nums, return all the triplets [nums[i], nums[j], nums[k]] where nums[i] + nums[j] + nums[k] == 0,
+        // and the indices i, j and k are all distinct.
+        // The output should not contain any duplicate triplets. You may return the output and the triplets in any order.
+
+        // Example 1:
+        // Input: nums = [-1,0,1,2,-1,-4]
+        // Output: [[-1,-1,2],[-1,0,1]]
+
+
+        // SOLUTION-1 (BRUTE FORCE)
+        // function threeSum(arr) {
+        //     let res = new Set()
+        //     arr = arr.sort((a, b) => a - b)
+
+        //     for(let i = 0; i < arr.length; i++) {
+        //         for(let j = i + 1; j < arr.length; j++) {
+        //             for(let k = j + 1; k < arr.length; k++) {
+        //                 if(arr[i] + arr[j] + arr[k] === 0) {
+        //                     // console.log(res.add([arr[i], arr[j], arr[k]]));
+                            
+        //                     console.log(res.add(JSON.stringify([arr[i], arr[j], arr[k]])));
+        //                 }
+        //             }
+        //         }
+        //     }
+        //     console.log(Array.from(res).map((item) => JSON.parse(item)));
+            
+        //     return res
+        // }
+
+
+        // SOLUTION-2 TWO-POINTER
+        // two pointer solution mein two parts hain, iss mein, main first element ln ga aur other two elements two-pointer sy 
+        // aaye gy, matlab aik for-loop aur aur aik while loop, aur iss mein pehle arr ko sort krna ho ga
+
+        // function threeSum(arr) {
+        //     let res = []
+        //     arr = arr.sort((a, b) => a - b)
+
+        //     for(let i = 0; i < arr.length; i++) {
+        //         //yahan ye dekh rha hn k agar i 0 sy agay hai aur next num same hai previous k tou uss sy nai compare krna
+        //         if(i > 0 && arr[i] === arr[i - 1]) {
+        //             continue
+        //         }
+        //         //abb two-pointer solution for next two elements
+        //         let left = i + 1, right = arr.length - 1
+        //         while(left < right) {
+        //             //ye 3 numbers ka sum liya hai
+        //             let threeSum = arr[i] + arr[left] + arr[right]
+        //             if(threeSum > 0) {
+        //                 right--
+        //             }else if(threeSum < 0) {
+        //                 left++
+        //             }else{
+        //                 res.push([arr[i], arr[left], arr[right]])
+        //                 left++
+        //                 right--
+        //                 //yahan aik aur condition check krni hai k agar arr k agay koi number repeat ho rha hai tou ussy bhi compare nai krna
+        //                 // ye while-loop else statement k andar aaye ga
+        //                 while(left < right && arr[left] === arr[left - 1]) {
+        //                     left++
+        //                 }
+        //             }
+        //         }
+        //     }
+
+        //     console.log(res);
+            
+        // }
+
+        // threeSum([-1,0,1,2,-1,-4])
+        // threeSum([-2,-2,0,0,2,2])
+
+
+        // 3-Container With Most Water
+        // You are given an integer array heights where heights[i] represents the height of the i th bar.
+        // You may choose any two bars to form a container. Return the maximum amount of water a container can store.
+
+        // Example 1:
+        // Input: height = [1,7,2,5,4,7,3,6]
+        // Output: 36
+        //diagram dekh smjh aaye gi kyu mein area of reactangle (l * w) calculate karon ga for each combination, e.g 1 aur 7 sy agar mein
+        //rectangle banata hn tou 1 ki height limiting factor hai 1 sy 7 k 1 tk aik rectangele banay gi tou area (l*w) 1*1 ho ga, abb agr
+        //1 sy 2 tkjata hn tou yahan area (l*w) 1*2 kyu k abb width barh gai hai
+
+        // SOLUTION-1 BRUTE-FORCE
+        // function maxArea(heights) {
+        //     let res = 0
+        //     for(let i = 0; i < heights.length; i++) {
+        //         for(let j = i + 1; j < heights.length; j++) {
+        //             let area = (Math.min(heights[i], heights[j]) * (j - i))
+        //             res = Math.max(res, area)
+        //         }
+        //     }
+
+        //     console.log(res);
+            
+        // }
+
+
+        // SOLUTION-1 TWO-POINTER
+        function maxArea(heights) {
+            let res = 0
+            let left = 0, right = heights.length - 1
+
+            while(left < right) {
+                const area = Math.min(heights[left], heights[right]) * (right - left)
+
+                res = Math.max(res, area)
+
+                if(heights[left] <= heights[right]) {
+                    left++
+                }else{
+                    right--
+                }
+            }
+
+            console.log(res);
+            
+        }
+
+
+        maxArea([1,7,2,5,4,7,3,6])
+        maxArea([2,2,2])
+
+
+    </script>
+</body>
+</html>
