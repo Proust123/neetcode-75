@@ -497,36 +497,457 @@
         // Output: [2,3]
 
 
-        function topkFrequent(nums, k) {
-            let obj = {}
-            let count = Array.from({length: nums.length + 1}, () => [])
+        // function topkFrequent(nums, k) {
+        //     let obj = {}
+        //     let count = Array.from({length: nums.length + 1}, () => [])
 
-            for(let num of nums) {
-                obj[num] = (obj[num] || 0) + 1
-            }
-            // console.log(obj);
+        //     for(let num of nums) {
+        //         obj[num] = (obj[num] || 0) + 1
+        //     }
+        //     // console.log(obj);
 
-            for(let ele in obj) {
-                count[obj[ele]].push(+ele)
-            }
-            console.log(count);
+        //     for(let ele in obj) {
+        //         count[obj[ele]].push(+ele)
+        //     }
+        //     console.log(count);
 
-            let res = []
+        //     let res = []
             
-            for(let i = count.length - 1; i > 0; i--) {
-                for(let num of count[i]){
-                    res.push(num)
-                    // console.log(res);
-                    if(res.length === k) {
-                        // console.log(res);
+        //     for(let i = count.length - 1; i > 0; i--) {
+        //         for(let num of count[i]){
+        //             res.push(num)
+        //             // console.log(res);
+        //             if(res.length === k) {
+        //                 // console.log(res);
                         
+        //             }
+        //         }
+        //         }
+        // }
+
+        // topkFrequent([1,2,2,3,3,3,6,6], 2)
+        // topkFrequent([7,7], 1)
+
+
+        //REVISION
+        // 1- Contains Duplicate
+        // Given an integer array nums, return true if any value appears more than once in the array, otherwise return false.
+        
+        // Example 1:
+        // Input: nums = [1, 2, 3, 3]
+        // Output: true
+
+        
+        // function hasDuplicates(nums) {
+        //     for(let i = 0; i < nums.length; i++) {
+        //         for(let j = i+1; j < nums.length; j++) {
+        //             if(nums[i] === nums[j]) {
+        //                 console.log(true);
+        //                 return
+        //             }
+        //         }
+        //     }
+
+        //     console.log(false);
+            
+        // }
+
+        // function hasDuplicates(nums) {
+        //     let set = new Set()
+
+        //     for(let num of nums) {
+        //         if(!set.has(num)) {
+        //             set.add(num)
+        //         }else{
+        //             console.log(true);
+        //             return 
+        //         }
+        //     }
+        //     console.log(false);
+            
+        // }
+
+        // hasDuplicates([1, 2, 3, 3])
+        // hasDuplicates([1, 2, 3, 2])
+        // hasDuplicates([1, 2, 3])
+
+
+        // 2- Valid Anagram
+ 
+        // Given two strings s and t, return true if the two strings are anagrams of each other, otherwise return false.
+        // An anagram is a string that contains the exact same characters as another string, but the order of the characters can be different.
+
+        // Example 1:
+        // Input: s = "racecar", t = "carrace"
+        // Output: true
+
+        // function isAnagram(s, t) {
+        //     if(s.length !== t.length) {
+        //         return false
+        //     }
+
+        //     let map1 = new Map()
+        //     let map2 = new Map()
+
+        //     for(let letter of s) {
+        //         if(map1.has(letter)) {
+        //             map1.set(letter, map1.get(letter)+1)
+        //         }else{
+        //             map1.set(letter, 1)
+        //         }
+        //     }
+            
+        //     for(let letter of t) {
+        //         if(map2.has(letter)) {
+        //             map2.set(letter, map2.get(letter)+1)
+        //         }else{
+        //             map2.set(letter, 1)
+        //         }
+        //     }
+
+        //     for(let [key, value] of map1) {
+        //         // console.log(`${key} -> ${value}`);
+        //         if(map2.get(key) !== value) {
+        //             console.log(false);
+        //             return 
+        //         }
+        //     }
+            
+        //     console.log(true);
+            
+        // }
+
+        // isAnagram("racecar", "carrace")
+
+
+        // 3- Two Sum
+        // Given an array of integers nums and an integer target, return the indices i and j such that nums[i] + nums[j] == target and i != j.
+        // You may assume that every input has exactly one pair of indices i and j that satisfy the condition.
+        // Return the answer with the smaller index first.
+
+        // Example 1:
+        // Input: 
+        // nums = [3,4,5,6], target = 7
+        // Output: [0,1]
+        // Explanation: nums[0] + nums[1] == 7, so we return [0, 1].
+
+        // function twoSum(nums, target) {
+        //     let map = new Map()
+
+        //     for(let i = 0; i < nums.length; i++) {
+        //         let diff = target - nums[i]
+
+        //         if(!map.has(diff)) {
+        //             map.set(nums[i], i)
+        //         }else{
+        //             console.log([map.get(diff), i]);
+        //             return 
+        //         }
+        //     }
+
+        //     return []
+        // }
+
+        // twoSum([3,4,5,6], 7)
+        // twoSum([4,5,6], 10)
+        // twoSum([5,5], 10)
+
+
+        // 4- Group Anagrams
+        // Given an array of strings strs, group all anagrams together into sublists. You may return the output in any order.
+        // An anagram is a string that contains the exact same characters as another string, but the order of the characters can be different.
+
+        // Example 1:
+        // Input: strs = ["act","pots","tops","cat","stop","hat"]
+        // Output: [["hat"],["act", "cat"],["stop", "pots", "tops"]]
+
+
+        // function groupAnagrams(strs) {
+            // let map = new Map()
+            
+            // for(let str of strs) {
+            //     let sorted = str.split('').sort().join('')
+
+            //     if(!map.has(sorted)) {
+            //         map.set(sorted, [str])
+            //     }else{
+            //         map.get(sorted).push(str)
+            //     }
+            // }
+            
+            // console.log([...map.values()]);
+            
+        // }
+
+
+        // function groupAnagrams(strs) {
+        //     let map = new Map()
+
+        //     for(let str of strs) {
+        //         let count = new Array(26).fill(0)
+        //         // console.log(count);
+        //         for(let letter of str) {
+        //             count[letter.charCodeAt(0) - 97]++
+        //         }
+        //         // console.log(count);
+        //         let keys = count.join('')
+        //         // console.log(keys);
+        //         if(!map.has(keys)) {
+        //             map.set(keys, [str])
+        //         }else{
+        //             map.get(keys).push(str)
+        //         }
+                
+        //     }
+
+        //     console.log(map);
+        // }
+
+        // groupAnagrams(["act","pots","tops","cat","stop","hat"])
+
+
+        // 5- Top K Frequent Elements 
+        // Given an integer array nums and an integer k, return the k most frequent elements within the array.
+        // The test cases are generated such that the answer is always unique.
+        // You may return the output in any order.
+
+        // Example 1:
+        // Input: nums = [1,2,2,3,3,3], k = 2
+        // Output: [2,3]
+
+        // Example 2:
+        // Input: nums = [7,7], k = 1
+        // Output: [7]
+
+
+        // function topkFrequent(nums, k) {
+        //     let obj = {}
+        //     let arr = Array.from({length: nums.length + 1}, () => [])
+        
+        //     // console.log(arr);
+        //     // for(let num of nums) {
+        //     //     arr[num].push(+num)
+        //     // }
+
+        //     for(let num of nums)  {
+        //         obj[num] = (obj[num] || 0) + 1 //==>> {7 : 2} 
+        //     }
+
+        //     console.log(obj);
+
+        //     for(let n in obj) {
+        //         // console.log(n); //n === 7
+        //         // console.log(obj[n]); //obj[n] === 2
+                
+        //         //arr[2].push(7)
+        //         arr[obj[n]].push(+n)
+        //     }
+            
+        //     console.log(arr);
+            
+
+        //     let res = []
+        //     for(let i = arr.length - 1; i > 0; i--) {
+        //         for(let num of arr[i]) {
+        //             res.push(num)
+        //             console.log(res);
+
+        //             if(res.length === k) {
+        //                 console.log(res);
+        //                 return 
+        //             }
+        //         }
+
+        //         // if(arr[i].length >= k) {
+        //         //     console.log(arr[i]);
+        //         //     res.push(arr[i].pop())
+        //         // }
+        //     }
+            
+        //     console.log(res);
+            
+        // }
+
+        // topkFrequent([1,2,2,3,3,3, 3], 2)
+        // topkFrequent([7,7], 1)
+
+
+
+        // 6- Encode and Decode Strings
+        // Design an algorithm to encode a list of strings to a single string. The encoded string is then decoded back to the original list of strings.
+        // Please implement encode and decode
+
+        // Example 1:
+        // Input: ["neet","code","love","you"]
+        // Output:["neet","code","love","you"]
+
+        // Example 2:
+        // Input: ["we","say",":","yes"]
+        // Output: ["we","say",":","yes"]
+
+
+        // class Solution{
+        //     encode(arr) {
+        //         let str = ''
+        //         for(let word of arr) {
+        //             str += word.length + "#" + word
+        //         }
+        //         return str
+        //     }
+
+        //     decode(str) {
+        //         let i = 0
+        //         let arr = []
+
+        //         while(i < str.length) {
+        //             let j = i
+
+        //             while(str[j] !== '#') {
+        //                 j++
+        //             }
+
+        //             let length = +str.slice(i, j)
+
+        //             i = j + 1
+        //             j = i + length
+
+        //             arr.push(str.slice(i, j))
+
+        //             i = j
+        //         }
+
+        //         return arr
+        //     }
+        // }
+
+        // const sol = new Solution()
+        // console.log(sol.encode(["neet","code","love","you"]));
+        // console.log(sol.decode("4#neet4#code4#love3#you"));
+
+
+        // 7- Products of Array Except Self
+        // Given an integer array nums, return an array output where output[i] is the product of all the elements of nums except nums[i].
+        // Each product is guaranteed to fit in a 32-bit integer.
+        // Follow-up: Could you solve it in O(n) time without using the division operation?
+
+        // Example 1:
+        // Input: nums = [1,2,4,6]
+        // Output: [48,24,12,8]
+
+
+        // function productExceptSelf(nums) {
+        //     let res = new Array(nums.length).fill(1)
+        //     // console.log(res);
+            
+        //     for(let i = 1; i < nums.length; i++) {
+        //         res[i] = res[i - 1] * nums[i - 1]
+        //     }
+        //     // console.log(res);
+            
+        //     let postFix = 1
+        //     for(let i = nums.length - 1; i >= 0; i--) {
+        //         res[i] = res[i] * postFix
+        //         postFix = postFix * nums[i]
+        //     }
+
+        //     return res
+            
+        // }
+
+        // productExceptSelf([1,2,4,6])
+        
+        // res = [1,1,1,1], nums = [1,2,4,6]
+        // for(let i = 1; i < nums.length; i++) {
+        //     res[i] = res[i - 1] * nums[i - 1]
+        // }
+
+        //i=1
+        // res[1] = res[1-1] * num[1-1]
+        //res[1] = res[0] * nums[0] === 1 * 1 = 1
+        //res = [1,1,1,1]
+
+        //i=2
+        //res[2] = res[2-1] * nums[2-1]
+        //res[2] = res[1] * nums[1] === 1 * 2 = 2
+        //res = [1,1,2,1]
+
+        //i=3
+        //res[3] = res[3-1] * nums[3-1]
+        //res[3] = res[2] * nums[2] === 2 * 4 = 8
+        //res = [1,1,2,8]
+
+
+        // res = [1,1,2,8] nums = [1,2,4,6]
+        // let postFix = 1
+        // for(let i = nums.length - 1; i >= 0; i--) {
+        //     res[i] = res[i] * postFix
+        //     postFix = postFix * nums[i] 
+        // }
+
+        // i=3
+        // res[3] = res[3] * postFix === 8 * 1 = 8
+        // postFix = 1 * nums[3] = 1 * 6 = 6
+        // res = [1,1,2,8]
+
+        //i=2
+        // res[2] = res[2] * postFix = 2 * 6 = 12
+        // postFix = 6 * nums[2] = 6 * 4 = 24
+        // res = [1,1,12,8]
+
+        //i=1
+        // res[1] = res[1] * postFix = 1 * 24 = 24
+        // postFix = 24 * nums[1] = 24 * 2 = 48
+        // res = [1,24,12,8]
+
+        //i=0
+        // res[0] = res[0] * postFix = 1 * 48 = 48
+        // postFix = 48 * nums[0] = 48 * 1 = 48
+        // res[48, 24, 12, 8]
+
+
+        // [1,2,4,6]
+        //prefix = [1,1,2,8]
+        //postFix = [48,24,6,1]
+        //res = prefix[i] * postFix[i]
+        //res = [(48*1), (24*1), (6*2), (8*1)]
+        //rex = [48, 24, 12, 8]
+
+
+        // 8- Longest Consecutive Sequence
+        // Given an array of integers nums, return the length of the longest consecutive sequence of elements that can be formed.
+        // A consecutive sequence is a sequence of elements in which each element is exactly 1 greater than the previous element. 
+        // The elements do not have to be consecutive in the original array.
+        // You must write an algorithm that runs in O(n) time.
+
+        // Example 1:
+        // Input: nums = [2,20,4,10,3,4,5]
+        // Output: 4
+
+
+        function longestConsecutive(nums) {
+            let numSet = new Set(nums)
+
+            let longestSequence = 0
+            for(let num of numSet) {
+                if(!numSet.has(num - 1)) {
+                    currSequence = 1
+                    currNum = num
+
+                    while(numSet.has(num + 1)) {
+                        currSequence++
+                        num++
                     }
                 }
-                }
+
+                longestSequence = Math.max(longestSequence, currSequence)
+            }
+
+            console.log(longestSequence);
+            
         }
 
-        topkFrequent([1,2,2,3,3,3,6,6], 2)
-        topkFrequent([7,7], 1)
+        longestConsecutive([2,20,4,10,3,4,5])
+        longestConsecutive([0,3,2,5,4,6,1,1])
 
     </script>
 </body>

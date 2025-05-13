@@ -42,7 +42,7 @@
             
         // }
 
-        //SOLUTION-2 TWO-POINTER
+        // //SOLUTION-2 TWO-POINTER
         // function maxProfit(prices) {
         //     let left = 0, right = 1
         //     let res = 0
@@ -66,25 +66,25 @@
 
 
         // SOLUTION-3 DYNAMIC-PROGRAMMING
-        function maxProfit(prices) {
-            let maxP = 0
-            let minBuy = prices[0]
-            console.log(minBuy);
+        // function maxProfit(prices) {
+        //     let maxP = 0
+        //     let minBuy = prices[0]
+        //     console.log(minBuy);
             
 
-            for(let sell of prices) {
-                console.log(minBuy);
+        //     for(let sell of prices) {
+        //         console.log(minBuy);
                 
-                maxP = Math.max(maxP, sell - minBuy)
-                console.log(minBuy);
-                minBuy = Math.min(minBuy, sell)
-                console.log(minBuy);
+        //         maxP = Math.max(maxP, sell - minBuy)
+        //         console.log(minBuy);
+        //         minBuy = Math.min(minBuy, sell)
+        //         console.log(minBuy);
 
-            }
+        //     }
 
-            return maxP
+        //     return maxP
             
-        }
+        // }
 
         // [10,1,5,6,7,1]
         // maxP = Math.max(maxP, sell - minBuy)
@@ -114,8 +114,45 @@
         // maxP = Math.max(maxP, sell - minBuy) === maxP=Math.max(6, 1 - 1) = (0, 0) = 6
         // minBuy = Math.min(1, 1) = 1
 
-        maxProfit([10,1,5,6,7,1])
-        maxProfit([10,8,7,5,2])
+        // maxProfit([10,1,5,6,7,1])
+        // maxProfit([10,8,7,5,2])
+
+
+        // 2-Longest Substring Without Repeating Characters
+        // Given a string s, find the length of the longest substring without duplicate characters.
+        // A substring is a contiguous sequence of characters within a string.
+
+        // Example 1:
+        // Input: s = "zxyzxyz"
+        // Output: 3
+
+
+        function lengthOfLongestSubstring(s) {
+            let map = new Map()
+            let left = 0
+            let res = 0
+
+            for(let right = 0; right < s.length; right++) {
+
+                if(map.has(s[right])) {
+                    left = Math.max(map.get(s[right]) + 1, left)
+                    // console.log(left);
+                    
+                }
+
+                map.set(s[right], right)
+                res = Math.max(res, right - left + 1)
+                console.log(res);
+                
+            }
+            
+            return map
+        }
+
+
+        console.log(lengthOfLongestSubstring("zxyzxyz"));
+        // console.log(lengthOfLongestSubstring("pwwkew"));
+        
 
     </script>
     

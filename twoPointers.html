@@ -249,29 +249,208 @@
 
 
         // SOLUTION-1 TWO-POINTER
-        function maxArea(heights) {
-            let res = 0
-            let left = 0, right = heights.length - 1
+        // function maxArea(heights) {
+        //     let res = 0
+        //     let left = 0, right = heights.length - 1
 
-            while(left < right) {
-                const area = Math.min(heights[left], heights[right]) * (right - left)
+        //     while(left < right) {
+        //         const area = Math.min(heights[left], heights[right]) * (right - left)
 
-                res = Math.max(res, area)
+        //         res = Math.max(res, area)
 
-                if(heights[left] <= heights[right]) {
-                    left++
-                }else{
-                    right--
-                }
-            }
+        //         if(heights[left] <= heights[right]) {
+        //             left++
+        //         }else{
+        //             right--
+        //         }
+        //     }
 
-            console.log(res);
+        //     console.log(res);
             
-        }
+        // }
 
 
-        maxArea([1,7,2,5,4,7,3,6])
-        maxArea([2,2,2])
+        // maxArea([1,7,2,5,4,7,3,6])
+        // maxArea([2,2,2])
+
+
+        // 1- Valid Palindrome 
+        // Given a string s, return true if it is a palindrome, otherwise return false.
+        // A palindrome is a string that reads the same forward and backward. It is also case-insensitive and ignores
+        // all non-alphanumeric characters.
+
+        // Example 1:
+        // Input: s = "Was it a car or a cat I saw?"
+        // Output: true
+
+        // //Solution-1 time-complexity => o(n), space-complexity => o(n)
+        // function isPalindrome(s) {
+        //     let formattedStr = s.replace(/[^a-zA-Z0-9]/g, '').toLowerCase()
+        //     console.log(formattedStr);
+            
+        //     let left = 0, right = formattedStr.length - 1
+        //     while(left < right) {
+        //         if(formattedStr[left] !== formattedStr[right]) {
+        //             return false
+        //         }
+        //         left++
+        //         right--
+
+        //     }
+
+        //     return true
+        // }
+
+        // //Solution-2 time-complexity => o(n), space-complexity => o(1)
+        // function isPalindrome(s) {
+
+        //     let left = 0, right = s.length - 1
+
+        //     while(left < right) {
+        //         while(left < right && !isAlphaNum(s[left])) {
+        //             left++
+        //         }
+
+        //         while(right > left && !isAlphaNum(s[right])) {
+        //             right--
+        //         }
+
+        //         if(s[left].toLowerCase() !== s[right].toLowerCase()) {
+        //             return false
+        //         }
+
+        //         left++
+        //         right--
+        //     }
+
+        //     return true
+
+        //     function isAlphaNum(c) {
+        //         return (
+        //             (c >= 'A' && c <= 'Z') ||
+        //             (c >= 'a' && c <= 'z') ||
+        //             (c >= '0' && c <= '9')
+        //         )
+        //     }
+        // }
+
+
+        // console.log(isPalindrome("Was it a car or a cat I saw?"));
+        // console.log(isPalindrome("tab a cat"));
+        
+        
+
+        // Two Sum
+        // Given an array of integers nums and an integer target, return the indices i and j such that nums[i] + nums[j] == target and i != j.
+        // You may assume that every input has exactly one pair of indices i and j that satisfy the condition.
+        // Return the answer with the smaller index first.
+
+        // Example 1:
+        // Input: 
+        // nums = [3,4,5,6], target = 7
+        // Output: [0,1]
+
+
+        // function twoSum(nums, target) {
+        //     let left = 0, right = nums.length - 1
+
+        //     while(left  < right) {
+                
+        //         while(nums[left] + nums[right] > target) {
+        //             right--
+        //         }
+        //         while(nums[left] + nums[right] < target) {
+        //             left++
+        //         }
+
+        //         if(nums[left] + nums[right] === target) {
+        //             return [left, right]
+        //         }
+              
+        //     }
+
+        //     return []
+        // }
+
+
+        // console.log(twoSum([3,4,5,6], 7));
+        // console.log(twoSum([4,5,6], 10));
+        // console.log(twoSum([5,5], 10));
+        
+
+
+        // 2- 3Sum 
+        // Given an integer array nums, return all the triplets [nums[i], nums[j], nums[k]] where nums[i] + nums[j] + nums[k] == 0,
+        // and the indices i, j and k are all distinct.
+        // The output should not contain any duplicate triplets. You may return the output and the triplets in any order.
+
+        // Example 1:
+        // Input: nums = [-1,0,1,2,-1,-4]
+        // Output: [[-1,-1,2],[-1,0,1]]
+
+
+        // function threeSum(nums) {
+        //     let res = []
+        //     nums = nums.sort((a,b) => a - b)
+        //     for(let i = 0; i < nums.length; i++) {
+        //         if(i > 0 && nums[i] === nums[i-1]) continue
+
+        //         let left = i+1, right = nums.length - 1
+
+        //         while(left < right) {
+        //             let sum = nums[i] + nums[left] + nums[right]
+
+        //             if(sum > 0) {
+        //                 right--
+        //             }else if(sum < 0) {
+        //                 left++
+        //             }else {
+        //                 res.push([nums[i], nums[left], nums[right]])
+        //                 left++
+
+        //                 while(left < right && nums[left] === nums[left-1]) {
+        //                     left++
+        //                 }
+        //             }
+        //         }
+        //     }
+
+        //     return res
+        // }
+
+        // console.log(threeSum([-1,0,1,2,-1,-4]));
+        
+
+        // 3- Container With Most Water
+        // You are given an integer array heights where heights[i] represents the height of the ith bar.
+        // You may choose any two bars to form a container. Return the maximum amount of water a container can store.
+
+        // Example 1:
+
+        // Input: height = [1,7,2,5,4,7,3,6]
+        // Output: 36
+
+
+        // function maxArea(heights) {
+        //     let res = 0
+        //     let left = 0, right = heights.length - 1
+            
+        //     while(left < right) {
+        //         let area = Math.min(heights[left], heights[right]) * (right - left)
+        //         res = Math.max(res, area)
+
+        //         if(heights[left] <= heights[right]) {
+        //             left++
+        //         }else{
+        //             right--
+        //         }
+        //     }
+
+        //     return res
+        // }
+
+        // console.log(maxArea([1,7,2,5,4,7,3,6]));
+        
 
 
     </script>
