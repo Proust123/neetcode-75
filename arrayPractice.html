@@ -924,30 +924,115 @@
         // Output: 4
 
 
-        function longestConsecutive(nums) {
-            let numSet = new Set(nums)
+        // function longestConsecutive(nums) {
+        //     let numSet = new Set(nums)
 
-            let longestSequence = 0
-            for(let num of numSet) {
-                if(!numSet.has(num - 1)) {
-                    currSequence = 1
-                    currNum = num
+        //     let longestSequence = 0
+        //     for(let num of numSet) {
+        //         if(!numSet.has(num - 1)) {
+        //             currSequence = 1
+        //             currNum = num
 
-                    while(numSet.has(num + 1)) {
-                        currSequence++
-                        num++
-                    }
-                }
+        //             while(numSet.has(num + 1)) {
+        //                 currSequence++
+        //                 num++
+        //             }
+        //         }
 
-                longestSequence = Math.max(longestSequence, currSequence)
+        //         longestSequence = Math.max(longestSequence, currSequence)
+        //     }
+
+        //     console.log(longestSequence);
+            
+        // }
+
+        // longestConsecutive([2,20,4,10,3,4,5])
+        // longestConsecutive([0,3,2,5,4,6,1,1])
+
+
+        // 1-Longest Consecutive Sequence 
+        // Given an array of integers nums, return the length of the longest consecutive sequence of elements that can be formed.
+
+        // A consecutive sequence is a sequence of elements in which each element is exactly 1 greater than the previous element. 
+        // The elements do not have to be consecutive in the original array.
+
+        // You must write an algorithm that runs in O(n) time.
+
+        // Example 1:
+        // Input: nums = [2,20,4,10,3,4,5]
+        // Output: 4
+        // Explanation: The longest consecutive sequence is [2, 3, 4, 5].
+
+        // Example 2:
+        // Input: nums = [0,3,2,5,4,6,1,1]
+        // Output: 7
+
+
+        // function longestConsecutive(nums) {
+        //     let numSet = new Set(nums)
+        //     let longestSequence = 0
+
+        //     for(let num of numSet) {
+        //         if(!numSet.has(num - 1)) {
+        //             let currNum = num
+        //             let currSequence = 1
+
+        //             while(numSet.has(currNum+1)) {
+        //                 currNum++
+        //                 currSequence++
+        //             }
+
+        //             longestSequence = Math.max(longestSequence, currSequence)
+        //         }
+        //     }
+
+        //     return longestSequence 
+        // }
+
+
+
+        // console.log(longestConsecutive([2,20,4,10,3,4,5]));
+        // console.log(longestConsecutive([0,3,2,5,4,6,1,1]));
+
+
+        // 2-Products of Array Except Self 
+        // Given an integer array nums, return an array output where output[i] is the product of all the elements of nums except
+        // nums[i].Each product is guaranteed to fit in a 32-bit integer.
+        // Follow-up: Could you solve it in O(n) time without using the division operation?
+
+        // Example 1:
+        // Input: nums = [1,2,4,6]
+        // Output: [48,24,12,8]
+
+        // Example 2:
+        // Input: nums = [-1,0,1,2,3]
+        // Output: [0,-6,0,0,0]
+        
+
+
+        function productExceptSelf(nums) {
+            let arr = new Array(nums.length).fill(1)
+            // console.log(arr);
+            
+            for(let i = 1; i < nums.length; i++) {
+                arr[i] = arr[i-1] * nums[i-1]
             }
 
-            console.log(longestSequence);
+            // console.log(arr);
+
+            let postFix = 1
+            for(let i = nums.length - 1; i >= 0; i--) {
+                arr[i] = arr[i] * postFix
+                postFix = postFix * nums[i]
+            }
+            
+            return arr
             
         }
 
-        longestConsecutive([2,20,4,10,3,4,5])
-        longestConsecutive([0,3,2,5,4,6,1,1])
+
+        console.log(productExceptSelf([1,2,4,6]));
+        
 
     </script>
 </body>

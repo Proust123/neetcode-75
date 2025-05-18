@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sliding Window</title>
+</head>
+<body>
+    
+
+    <script>
+
+        // 1-Longest Repeating Character Replacement
+        // You are given a string s consisting of only uppercase english characters and an integer k. You can choose up to k characters of the string 
+        // and replace them with any other uppercase English character.
+        // After performing at most k replacements, return the length of the longest substring which contains only one distinct character.
+
+        // Example 1:
+        // Input: s = "XYYX", k = 2
+        // Output: 4
+        // Explanation: Either replace the 'X's with 'Y's, or replace the 'Y's with 'X's.
+
+        // Example 2:
+        // Input: s = "AAABABB", k = 1
+        // Output: 5
+
+        // //Solution
+        // function characterReplacement(s, k) {
+        //     let obj = {}
+        //     let left = 0
+        //     let res = 0
+        //     let maxFreq = 0
+
+        //     for(let right = 0; right < s.length; right++) {
+        //         obj[s[right]] = (obj[s[right]] || 0) + 1
+        //         maxFreq = Math.max(maxFreq, obj[s[right]])
+
+        //         if((right - left + 1) - maxFreq > k) {
+        //             obj[s[left]]--
+        //             left++
+        //         }
+
+        //         res = Math.max(res, right - left + 1)
+        //     }
+
+        //     return res
+        // }
+
+        // console.log(characterReplacement("XYYX", 2));
+        // console.log(characterReplacement("AAABABB", 1));
+
+
+        // 2-Longest Substring Without Repeating Characters
+        // Given a string s, find the length of the longest substring without duplicate characters.
+        // A substring is a contiguous sequence of characters within a string.
+
+        // Example 1:
+        // Input: s = "zxyzxyz"
+        // Output: 3
+        // Explanation: The string "xyz" is the longest without duplicate characters.
+
+        // Example 2:
+        // Input: s = "xxxx"
+        // Output: 1
+
+
+        // //Solution
+        // function lengthOfLongestSubstring(s) {
+        //     let charset = new Set()
+        //     let left = 0
+        //     let res = 0
+
+        //     for(let right = 0; right < s.length; right++) {
+        //         while(charset.has(s[right])) {
+        //             charset.delete(s[left])
+        //             left++
+        //         }
+
+        //         charset.add(s[right])
+        //         res = Math.max(res, right - left + 1)
+        //     }
+
+        //     return res
+        // }
+
+
+        // console.log(lengthOfLongestSubstring("zxyzxyz"));
+        // console.log(lengthOfLongestSubstring("pwwkew"));
+
+
+        // 3-Best Time to Buy and Sell Stock 
+        // You are given an integer array prices where prices[i] is the price of NeetCoin on the ith day.
+        // You may choose a single day to buy one NeetCoin and choose a different day in the future to sell it.
+        // Return the maximum profit you can achieve. You may choose to not make any transactions, in which case the profit would be 0.
+
+        // Example 1:
+        // Input: prices = [10,1,5,6,7,1]
+        // Output: 6
+        // Explanation: Buy prices[1] and sell prices[4], profit = 7 - 1 = 6.
+
+        // Example 2:
+        // Input: prices = [10,8,7,5,2]
+        // Output: 0
+
+
+
+        // function maxProfit(prices) {
+        //     let maxP = 0
+        //     let left = 0, right = 1
+
+        //     while(right < prices.length) {
+        //         if(prices[left] < prices[right]) {
+        //             let diff = prices[right] - prices[left]
+        //             maxP = Math.max(maxP, diff)
+        //         }else {
+        //             //agar left price right sy kam nai hai matlab right kam hai tou mein left ko right kr dn ga kyu k
+        //             //right price smallest hai aur mjhe left pe hamesha smallest chahiye jo buying hai
+        //             left = right
+        //         }
+        //         right++
+        //     }
+
+        //     return maxP
+        // } 
+
+
+
+        // console.log(maxProfit([10,1,5,6,7,1]));
+        // console.log(maxProfit([10,8,7,5,2]));
+        
+
+
+    </script>
+
+
+</body>
+</html>
